@@ -1,5 +1,7 @@
 package edu.hw1;
 
+import java.util.Arrays;
+
 public class Task3 {
 
     private Task3() {
@@ -14,26 +16,10 @@ public class Task3 {
         } else if (secondArray.length == 0) {
             return false;
         }
-        int minElementFirstArray = Integer.MAX_VALUE;
-        int minElementSecondArray = Integer.MAX_VALUE;
-        int maxElementFirstArray = Integer.MIN_VALUE;
-        int maxElementSecondArray = Integer.MIN_VALUE;
-        for (int element : firstArray) {
-            if (element < minElementFirstArray) {
-                minElementFirstArray = element;
-            }
-            if (element > maxElementFirstArray) {
-                maxElementFirstArray = element;
-            }
-        }
-        for (int element : secondArray) {
-            if (element < minElementSecondArray) {
-                minElementSecondArray = element;
-            }
-            if (element > maxElementSecondArray) {
-                maxElementSecondArray = element;
-            }
-        }
+        int minElementFirstArray = Arrays.stream(firstArray).min().getAsInt();
+        int minElementSecondArray = Arrays.stream(secondArray).min().getAsInt();
+        int maxElementFirstArray = Arrays.stream(firstArray).max().getAsInt();
+        int maxElementSecondArray = Arrays.stream(secondArray).max().getAsInt();
         return minElementFirstArray > minElementSecondArray && maxElementFirstArray < maxElementSecondArray;
     }
 }

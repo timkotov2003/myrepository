@@ -10,16 +10,7 @@ public class Task8 {
     public static boolean knightBoardCapture(int[][] chessBoard) {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                if (chessBoard[i][j] == 1 && (
-                    checkCoordinates(i - 2, j - 1, chessBoard)
-                        || checkCoordinates(i - 1, j - 2, chessBoard)
-                        || checkCoordinates(i - 2, j + 1, chessBoard)
-                        || checkCoordinates(i + 1, j - 2, chessBoard)
-                        || checkCoordinates(i + 2, j - 1, chessBoard)
-                        || checkCoordinates(i - 1, j + 2, chessBoard)
-                        || checkCoordinates(i + 2, j + 1, chessBoard)
-                        || checkCoordinates(i + 1, j + 2, chessBoard)
-                )) {
+                if (isKnightPresent(chessBoard, i, j) && canKnightEatSomeone(chessBoard, i, j)) {
                     return false;
                 }
             }
@@ -27,7 +18,22 @@ public class Task8 {
         return true;
     }
 
-    public static boolean checkCoordinates(int x, int y, int[][] array) {
+    public static boolean isCoordinatesChecked(int x, int y, int[][] array) {
         return x >= 0 && y >= 0 && x < SIZE && y < SIZE && array[x][y] == 1;
+    }
+
+    private static boolean isKnightPresent(int[][] chessBoard, int i, int j) {
+        return chessBoard[i][j] == 1;
+    }
+
+    private static boolean canKnightEatSomeone(int[][] chessBoard, int i, int j) {
+        return isCoordinatesChecked(i - 2, j - 1, chessBoard)
+            || isCoordinatesChecked(i - 1, j - 2, chessBoard)
+            || isCoordinatesChecked(i - 2, j + 1, chessBoard)
+            || isCoordinatesChecked(i + 1, j - 2, chessBoard)
+            || isCoordinatesChecked(i + 2, j - 1, chessBoard)
+            || isCoordinatesChecked(i - 1, j + 2, chessBoard)
+            || isCoordinatesChecked(i + 2, j + 1, chessBoard)
+            || isCoordinatesChecked(i + 1, j + 2, chessBoard);
     }
 }
