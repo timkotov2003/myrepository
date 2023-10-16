@@ -11,17 +11,17 @@ public class Task1 {
         if (input == null) {
             return -1;
         }
-        int minuts;
+        int minutes;
         int seconds;
         try {
-            minuts = Integer.parseInt(input.split(":")[0]);
+            minutes = Integer.parseInt(input.split(":")[0]);
             seconds = Integer.parseInt(input.split(":")[1]);
         } catch (NumberFormatException e) {
             return -1;
         }
-        if (seconds >= SECONDS_IN_MINUTE || seconds < 0 || minuts < 0) {
+        if (seconds >= SECONDS_IN_MINUTE || seconds < 0 || minutes < 0) {
             return -1;
         }
-        return minuts * SECONDS_IN_MINUTE + seconds;
+        return minutes * SECONDS_IN_MINUTE + seconds;
     }
 }

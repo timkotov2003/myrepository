@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 public class Task6 {
 
     public static final int KAPREKAR_CONST = 6174;
-    private static final int MAX_NUM_LENGTH = 4;
+    private static final int CORRECT_NUM_LENGTH = 4;
 
     private Task6() {
     }
@@ -14,13 +14,13 @@ public class Task6 {
         if (Math.abs(num) == KAPREKAR_CONST) {
             return 0;
         }
+        if (Integer.toString(Math.abs(num)).length() != CORRECT_NUM_LENGTH) {
+            throw new IllegalArgumentException("illegal num length!");
+        }
         String minNumInString = Integer.toString(Math.abs(num)).chars()
             .sorted()
             .mapToObj(Character::toString)
             .collect(Collectors.joining());
-        if (minNumInString.length() > MAX_NUM_LENGTH) {
-            throw new IllegalArgumentException("illegal num length!");
-        }
 
         // add leading zeros if num < 1000
         minNumInString = String.format("%04d", Integer.parseInt(minNumInString));

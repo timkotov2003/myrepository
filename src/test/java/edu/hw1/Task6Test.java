@@ -43,4 +43,11 @@ class Task6Test {
 
         assertThatIllegalArgumentException().isThrownBy(() -> Task6.countK(input));
     }
+
+    @Test
+    void illegalArgumentTestWithSmallInput() {
+        int input = 123;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> Task6.countK(input));
+    }
 }
