@@ -14,14 +14,14 @@ public class Task5 {
         }
         Contact[] contacts = new Contact[dataOfPeople.length];
         for (int i = 0; i < dataOfPeople.length; i++) {
-            contacts[i] = getContactFromString(dataOfPeople[i]);
+            contacts[i] = parseContactFromString(dataOfPeople[i]);
         }
         Comparator<Contact> comp = sortType == SortType.ASC ? Comparator.naturalOrder() : Comparator.reverseOrder();
         Arrays.sort(contacts, comp);
         return contacts;
     }
 
-    private static Contact getContactFromString(String str) {
+    private static Contact parseContactFromString(String str) {
         if (str.contains(" ")) {
             String[] data = str.split(" ");
             return new Contact(data[0], data[1]);

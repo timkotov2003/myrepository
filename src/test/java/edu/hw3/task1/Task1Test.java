@@ -11,7 +11,7 @@ class Task1Test {
         String input = "Hello world!";
         String expectedResult = "Svool dliow!";
 
-        String actualResult = Task1.atbash(input);
+        String actualResult = Task1.encryptViaAtbash(input);
 
         assertThat(actualResult).isEqualTo(expectedResult);
     }
@@ -23,7 +23,7 @@ class Task1Test {
         String expectedResult =
             "Zmb ullo xzm dirgv xlwv gszg z xlnkfgvi xzm fmwvihgzmw. Tllw kiltiznnvih dirgv xlwv gszg sfnzmh xzm fmwvihgzmw. ― Nzigrm Uldovi";
 
-        String actualResult = Task1.atbash(input);
+        String actualResult = Task1.encryptViaAtbash(input);
 
         assertThat(actualResult).isEqualTo(expectedResult);
     }
@@ -32,6 +32,6 @@ class Task1Test {
     void testIllegalArgument() {
         String input = null;
 
-        assertThatThrownBy(() -> Task1.atbash(input)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Task1.encryptViaAtbash(input)).isInstanceOf(IllegalArgumentException.class);
     }
 }
