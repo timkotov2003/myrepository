@@ -1,12 +1,12 @@
 package edu.hw5.task3;
 
-import edu.hw5.task3.impl.DateHandler1;
-import edu.hw5.task3.impl.DateHandler2;
-import edu.hw5.task3.impl.DateHandler3;
-import edu.hw5.task3.impl.DateHandler4;
-import edu.hw5.task3.impl.DateHandler5;
-import edu.hw5.task3.impl.DateHandler6;
-import edu.hw5.task3.impl.DateHandler7;
+import edu.hw5.task3.impl.DateHandlerImpl1;
+import edu.hw5.task3.impl.DateHandlerImpl2;
+import edu.hw5.task3.impl.DateHandlerImpl3;
+import edu.hw5.task3.impl.DateHandlerImpl4;
+import edu.hw5.task3.impl.DateHandlerImpl5;
+import edu.hw5.task3.impl.DateHandlerImpl6;
+import edu.hw5.task3.impl.DateHandlerImpl7;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -16,21 +16,21 @@ public class Task3 {
     }
 
     public static Optional<LocalDate> parseDate(String string) {
-        DateHandler dateHandler1 = new DateHandler1();
-        DateHandler dateHandler2 = new DateHandler2();
-        DateHandler dateHandler3 = new DateHandler3();
-        DateHandler dateHandler4 = new DateHandler4();
-        DateHandler dateHandler5 = new DateHandler5();
-        DateHandler dateHandler6 = new DateHandler6();
-        DateHandler dateHandler7 = new DateHandler7();
-        dateHandler1.setNext(dateHandler2);
-        dateHandler2.setNext(dateHandler3);
-        dateHandler3.setNext(dateHandler4);
-        dateHandler4.setNext(dateHandler5);
-        dateHandler5.setNext(dateHandler6);
-        dateHandler6.setNext(dateHandler7);
+        BaseDateHandler baseDateHandler1 = new DateHandlerImpl1();
+        BaseDateHandler baseDateHandler2 = new DateHandlerImpl2();
+        BaseDateHandler baseDateHandler3 = new DateHandlerImpl3();
+        BaseDateHandler baseDateHandler4 = new DateHandlerImpl4();
+        BaseDateHandler baseDateHandler5 = new DateHandlerImpl5();
+        BaseDateHandler baseDateHandler6 = new DateHandlerImpl6();
+        BaseDateHandler baseDateHandler7 = new DateHandlerImpl7();
+        baseDateHandler1.setNext(baseDateHandler2);
+        baseDateHandler2.setNext(baseDateHandler3);
+        baseDateHandler3.setNext(baseDateHandler4);
+        baseDateHandler4.setNext(baseDateHandler5);
+        baseDateHandler5.setNext(baseDateHandler6);
+        baseDateHandler6.setNext(baseDateHandler7);
 
-        LocalDate date = dateHandler1.handleRequest(string);
+        LocalDate date = baseDateHandler1.handleRequest(string);
         if (date == null) {
             return Optional.empty();
         } else {
