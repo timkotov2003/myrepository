@@ -20,6 +20,7 @@ public record Configuration(
     private static final String TO_DATE_PATTERN = "--to";
     private static final String FLAG = "--";
 
+    @SuppressWarnings("MissingSwitchDefault")
     public static Configuration of(String[] args) {
         List<String> inputPaths = new ArrayList<>();
         LocalDate inputStartDate = null;
@@ -30,38 +31,34 @@ public record Configuration(
         while (i < args.length) {
             var arg = args[i++];
 
-            if (PATH_PATTERN.equals(arg)) {
-                if (i < args.length) {
-                    arg = args[i++];
+            switch (arg) {
+                case PATH_PATTERN -> {
+                    if (i < args.length) {
+                        arg = args[i++];
+                    }
+                    while (i < args.length
+                        && !(arg.startsWith(FLAG))) {
+                        inputPaths.add(arg);
+                        arg = args[i++];
+                    }
                 }
-                while (i < args.length
-                    && !(arg.startsWith(FLAG))) {
-                    inputPaths.add(arg);
-                    arg = args[i++];
+                case FROM_DATE_PATTERN -> {
+                    if (i < args.length) {
+                        arg = args[i++];
+                        inputStartDate = LocalDate.parse(arg, FORMATTER);
+                    }
                 }
-
-            }
-
-            if (FROM_DATE_PATTERN.equals(arg)) {
-                if (i < args.length) {
-                    arg = args[i++];
-                    inputStartDate = LocalDate.parse(arg, FORMATTER);
+                case TO_DATE_PATTERN -> {
+                    if (i < args.length) {
+                        arg = args[i++];
+                        inputEndDate = LocalDate.parse(arg, FORMATTER);
+                    }
                 }
-
-            }
-
-            if (TO_DATE_PATTERN.equals(arg)) {
-                if (i < args.length) {
-                    arg = args[i++];
-                    inputEndDate = LocalDate.parse(arg, FORMATTER);
-                }
-
-            }
-
-            if (FORMAT_PATTERN.equals(arg)) {
-                if (i < args.length) {
-                    arg = args[i++];
-                    inputFormat = Format.getFormatByString(arg);
+                case FORMAT_PATTERN -> {
+                    if (i < args.length) {
+                        arg = args[i++];
+                        inputFormat = Format.getFormatByString(arg);
+                    }
                 }
             }
         }
